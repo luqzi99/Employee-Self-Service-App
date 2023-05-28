@@ -25,16 +25,15 @@ class Homepage extends StatelessWidget {
     return formatter.format(now);
   }
 
-  List<List<String>> gridData = [
-    ['Check In', '8:30AM', 'On time'],
-    ['Check Out', '5:30PM', 'On time'],
-    ['Start Overtime', '5:31PM', 'Project XYZ'],
-    ['Finish Overtime', '8:30PM', '5h']
-  ];
-
   @override
   Widget build(BuildContext context) {
     String currentDate = getCurrentDate();
+    List<List<String>> gridData = [
+    ['Check In', '8:30AM', 'On time', '150 pts'],
+    ['Check Out', '5:30PM', 'On time', '100 pts'],
+    ['Start Overtime', '5:31PM', 'Project XYZ', ''],
+    ['Finish Overtime', '8:30PM', '5h', 'RM50']
+  ];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -103,11 +102,9 @@ class Homepage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 300,
-            child: Section1(),
-          ),
+          Section1(),
           Section2(),
+          Section3(),
         ],
       ),
       bottomNavigationBar:
@@ -139,82 +136,34 @@ class Section1 extends StatelessWidget {
 
   // @override
   Widget build(BuildContext context) {
+
     return Expanded(
-        child: Container(
-            color: Color(0xFFF8F9FA),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Number of columns in the grid
-                  mainAxisSpacing: 10.0, // Spacing between each row
-                  crossAxisSpacing: 10.0, // Spacing between each column
-                  childAspectRatio: 1.5, // Aspect ratio of each grid item
+      flex: 2,
+      child: Container(
+            // padding: EdgeInsets.symmetric(horizontal: 20),
+            color: Colors.green,
+            child: Row(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(10)
+                  // ),
+                  // color: Colors.blue,
                 ),
-                itemCount: gridData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                      padding: const EdgeInsets.all(1),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 16),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    gridData[index][0],
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 16),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    gridData[index][1],
-                                    style: const TextStyle(
-                                      fontSize: 22.0,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 1, horizontal: 16),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    gridData[index][2],
-                                    style: const TextStyle(
-                                      fontSize: 16.0,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ));
-                },
-              ),
-            )));
+                // SizedBox(
+                //   width: 100,
+                // ),
+                // Container(
+                //   height: 100,
+                //   width: 100,
+                //   color: Colors.blue,
+                // )
+              ],
+            ),
+            )
+    );
   }
 }
 
@@ -223,9 +172,26 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      color: Colors.red,
+    return Expanded(
+      flex: 4,
+      child: Container(
+        // height: 100,
+        color: Colors.red,
+      )
+    );
+  }
+}
+
+class Section3 extends StatelessWidget {
+  const Section3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Container(
+        color: Colors.blue,
+      )
     );
   }
 }
